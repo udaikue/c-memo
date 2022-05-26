@@ -4,8 +4,8 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 before do
-  open('data/memos.json') do |m|
-    @memos_json = JSON.parse(m)
+  File.open('data/memos.json') do |f|
+    @memos = JSON.parse(f.read)
   end
 end
 
