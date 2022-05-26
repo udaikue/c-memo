@@ -1,3 +1,5 @@
-<% @memos_json['memos'].each do |memo| %>
-  <%= memo['title'] %>
-<% end %>
+<ul>
+  <% @memos['memos'].each do |m| %>
+    <li><%= m['title'] %></li>
+  <% end %>
+</ul>
