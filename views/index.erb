@@ -1,5 +1,5 @@
 <ul>
   <% @memos['memos'].each do |m| %>
-    <li><%= m['title'] %></li>
+    <li><a href="/memos/<%= m['id'] %>"><%= m['title'] %></a></li>
   <% end %>
 </ul>

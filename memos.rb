@@ -12,3 +12,12 @@ end
 get '/memos' do
   erb :index
 end
+
+get '/memos/:id' do
+  @memos['memos'].each do |m|
+    if m['id'] == params[:id].to_i
+      @memo = m
+    end
+  end
+  erb :show
+end
