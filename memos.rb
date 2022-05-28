@@ -21,6 +21,10 @@ class Memo
     @connection.exec('INSERT INTO memos (title, content) VALUES ($1, $2);', [title, content])
   end
 
+  def self.delete(id)
+    @connection.exec('DELETE FROM Memos WHERE id=$1;', [id])
+  end
+
   def self.db_disconnect
     @connection.finish
   end
@@ -52,4 +56,12 @@ get '/memos/:id' do
   @memo = Memo.details(id)
   Memo.db_disconnect
   erb :show
+end
+
+delete '/memos/:id' do
+  @id = params[:id]
+  Memo.db_connect
+  Memo.delete(@id)
+  Memo.db_disconnect
+  redirect to('/memos')
 end
