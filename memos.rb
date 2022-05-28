@@ -13,6 +13,10 @@ get '/memos' do
   erb :index
 end
 
+get '/memos/new' do
+  erb :new
+end
+
 get '/memos/:id' do
   @memos['memos'].each do |m|
     if m['id'] == params[:id].to_i
