@@ -6,7 +6,7 @@ require 'sinatra/reloader'
 
 class Memo
   def self.db_connect
-    @connection = PG.connect( dbname: 'memo' )
+    @connection = PG.connect(dbname: 'memo')
   end
 
   def self.all
@@ -14,11 +14,11 @@ class Memo
   end
 
   def self.details(id)
-    @connection.exec("SELECT id, title, content FROM memos WHERE id=$1;", [id])
+    @connection.exec('SELECT id, title, content FROM memos WHERE id=$1;', [id])
   end
 
   def self.add(title, content)
-    @connection.exec("INSERT INTO memos (title, content) VALUES ($1, $2);", [title, content])
+    @connection.exec('INSERT INTO memos (title, content) VALUES ($1, $2);', [title, content])
   end
 
   def self.db_disconnect
