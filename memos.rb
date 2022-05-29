@@ -32,21 +32,27 @@ class Memo
   def self.db_disconnect
     @connection.finish
   end
+
+  def self.db
+    db_connect
+    yield
+    db_disconnect
+  end
 end
 
 get '/memos' do
-  Memo.db_connect
-  @memos = Memo.all
-  Memo.db_disconnect
+  Memo.db do
+    @memos = Memo.all
+  end
   erb :index
 end
 
 post '/memos' do
   title = params[:title]
   content = params[:content]
-  Memo.db_connect
-  Memo.add(title, content)
-  Memo.db_disconnect
+  Memo.db do
+    Memo.add(title, content)
+  end
   redirect to('/memos')
 end
 
@@ -56,17 +62,17 @@ end
 
 get '/memos/:id' do
   @id = params[:id]
-  Memo.db_connect
-  @memo = Memo.details(@id)
-  Memo.db_disconnect
+  Memo.db do
+    @memo = Memo.details(@id)
+  end
   erb :show
 end
 
 get '/memos/:id/edit' do
   @id = params[:id]
-  Memo.db_connect
-  @memo = Memo.details(@id)
-  Memo.db_disconnect
+  Memo.db do
+    @memo = Memo.details(@id)
+  end
   erb :edit
 end
 
@@ -74,16 +80,16 @@ patch '/memos/:id' do
   id = params[:id]
   title = params[:title]
   content = params[:content]
-  Memo.db_connect
-  Memo.update(id, title, content)
-  Memo.db_disconnect
+  Memo.db do
+    Memo.update(id, title, content)
+  end
   redirect to('/memos')
 end
 
 delete '/memos/:id' do
   @id = params[:id]
-  Memo.db_connect
-  Memo.delete(@id)
-  Memo.db_disconnect
+  Memo.db do
+    Memo.delete(@id)
+  end
   redirect to('/memos')
 end
