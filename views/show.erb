@@ -1,4 +1,11 @@
-<% @memo.each do |m| %>
-  <h2><%= m['title'] %></h2>
-  <p><%= m['content'] %></p>
-<% end %>
+<form method="post" action="">
+  <input type="hidden" name="_method" value="delete">
+    <% @memo.each do |m| %>
+      <h2><%= m['title'] %></h2>
+      <p><%= m['content'] %></p>
+    <% end %>
+
+  <div class="btn-area">
+    <a class="btn" href="/memos/<%= @id %>/edit">Edit</a>
+    <button type="submit">Delete</button>
+</form>
