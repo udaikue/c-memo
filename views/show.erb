@@ -1,8 +1,8 @@
 <form method="post" action="">
   <input type="hidden" name="_method" value="delete">
     <% @memo.each do |m| %>
-      <h2><%= m['title'] %></h2>
-      <p><%= m['content'] %></p>
+      <h2><%= h(m['title']) %></h2>
+      <p><%= h(m['content']).gsub(/(\r\n|\r|\n)/, "<br>")  %></p>
     <% end %>
 
   <div class="btn-area">
