@@ -6,6 +6,6 @@
     <% end %>
 
   <div class="btn-area">
-    <input type="reset" value="Edit" onclick="location.href='<%= @id %>/edit'"><input type="submit" value="Delete">
-  </div>
+    <a class="btn" href="/memos/<%= @id %>/edit">Edit</a>
+    <button type="submit">Delete</button>
 </form>

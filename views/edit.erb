@@ -1,0 +1,20 @@
+<form method="post" action="/memos/<%= @id %>">
+  <input type="hidden" name="_method" value="patch">
+  <div class="input-item">
+    <label class="label">タイトル</label>
+    <% @memo.each do |m| %>
+      <input class="input" type="text" name="title" required value=<%= m['title'] %>>
+    <% end %>
+  </div>
+  <div class="input-item">
+    <label class="label">メモ</label>
+    <% @memo.each do |m| %>
+      <textarea class="input" name="content"><%= m['content'] %></textarea>
+    <% end %>
+  </div>
+
+  <div class="btn-area">
+    <button type="submit">Save</button>
+    <a class="btn" href='/memos'>Cancel</a>
+  </div>
+</form>
